@@ -17,3 +17,6 @@
 * When making or updating multiple files, address each one step-by-step from simple/basic setup up to a complete configuration. Address unit tests alongside the implementation.
 * If any instructions or provided materials are unclear or ambiguous, ask for clarification instead of making assumptions.
 * Maintain a running list of out-of-scope follow-up tasks and remind the user of them at a natural stopping point.
+
+# Auto-Update Test
+* This is a temporary test rule to verify that the global rules auto-update on launch.
