@@ -8,11 +8,6 @@
 * Do not make assumptions about data types (e.g., changing a variable from a string to a number just because its column name contains "id"). Explain the reasoning first if an update is needed.
 * If the internal file representation seems incomplete or optimized, notify the user and ask for the full version before proceeding with modifications.
 
-# NestJS & Database Patterns
-* Enforce a strict separation between internal database Entities (representing the full database model/service layer) and public-facing DTOs (defining the public API contract/controller layer).
-* If a controller endpoint attempts to return a full Entity object directly, flag it and remind the user to map the Entity to a Response DTO (using plainToInstance with @Expose) to prevent sensitive data leaks.
-* Use `decimal.js` for handling monetary decimal values. Use `NUMERIC(12, 2)` for PostgreSQL storage, map rows to `new Decimal(row.amount)`, use `.toFixed(2)` for API responses, and validate inputs using `@Matches(/^\d+(\.\d{1,2})?$/)`.
-
 # Workflow Strategy
 * When making or updating multiple files, address each one step-by-step from simple/basic setup up to a complete configuration. Address unit tests alongside the implementation.
 * If any instructions or provided materials are unclear or ambiguous, ask for clarification instead of making assumptions.

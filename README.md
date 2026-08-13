@@ -1,36 +1,38 @@
 # Antigravity Global Config
 
-This repository holds the global developer rules for the Antigravity IDE setup.
+This repository holds the global developer rules and workflows for Antigravity IDE.
+
+## Directory Structure
+
+```text
+antigravity_config/
+├── README.md
+├── rules/
+│   ├── general.md
+│   └── nestjs-database.md
+└── global_workflows/
+    └── sync-global-rules-repo.md
+```
 
 ## Setup Instructions
 
-### 1. The Declarative Bridge (The Symlink)
+### 1. Link Rules and Workflows
 
-To link the global rules file to the Antigravity IDE configuration directory, run:
+Run the following commands to link this repository to your global Antigravity configuration directory (`~/.gemini/config`):
 
 ```bash
-ln -s ~/git/antigravity_config/rules/global/GEMINI.md ~/.gemini/GEMINI.md
+mkdir -p ~/.gemini/config
+ln -sfn ~/git/antigravity_config/rules ~/.gemini/config/rules
+ln -sfn ~/git/antigravity_config/global_workflows ~/.gemini/config/global_workflows
 ```
 
-### 2. The Global Workflow (Manual Sync Command)
+> **Note:** Any new `.md` files added to `rules/` or `global_workflows/` will be automatically recognized by Antigravity across all workspaces without requiring any additional symlinks.
 
-To set up a global workflow that allows you to easily pull updates from GitHub, add the following global workflow in the Antigravity IDE:
+### 2. Auto-Sync Workflow
 
-````markdown
----
-description: Silently updates my master developer rules folder from GitHub on launch.
----
-# Workflow: Sync Global Rules Repo
-* **Trigger:** onWorkspaceOpen
-* **Description:** Silently updates my master developer rules folder from GitHub on launch.
+The `/sync-global-rules-repo` workflow is automatically loaded and configured to pull updates on workspace open (`onWorkspaceOpen`).
 
-## Actions
-1. **Pull Latest Changes:** Run a silent background git pull inside your dedicated rules repository directory.
-```bash
-   export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-   cd ~/git/antigravity_config && git pull -q
+You can also manually trigger a sync anytime in the Antigravity chat by running:
+```text
+/sync-global-rules-repo
 ```
-````
-
-#### Running the Sync
-Type `/sync-global-rules-repo` in the Antigravity IDE chat anytime to manually trigger the sync and pull down the latest rules.
